@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101018">
+<meta name="description" content="صفحة تحميل لعبة فِطنة من تطوير SPON TEAM. ألغاز وتحديات وشطرنج في تجربة عربية.">
+<title>فِطنة — SPON TEAM</title>
+<style>
+:root{--bg:#0d0e14;--surface:#171923;--surface2:#202331;--line:#2b3040;--text:#f7f7fb;--muted:#aeb3c2;--purple:#a855f7;--purple2:#7628c9;--green:#9be3bd}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif}
+a{color:inherit;text-decoration:none}
+.topbar{height:68px;border-bottom:1px solid #ffffff12;background:#101118;position:sticky;top:0;z-index:5}
+.topinner{max-width:1080px;height:100%;margin:auto;padding:0 20px;display:flex;align-items:center;gap:14px}
+.logo-mini{width:38px;height:38px;border-radius:12px;background:linear-gradient(140deg,#a855f7,#41166e);display:grid;place-items:center;font-weight:1000;font-size:21px;box-shadow:0 5px 20px #9b46ed55}
+.brand{font-weight:900;letter-spacing:1.4px;font-size:16px}.brand span{color:#c084fc}
+.toplabel{margin-right:auto;color:var(--muted);font-size:13px}
+.wrap{max-width:1080px;margin:auto;padding:30px 20px 60px}
+.breadcrumb{color:#a7aabd;font-size:13px;margin:2px 0 25px}
+.apphead{display:grid;grid-template-columns:116px 1fr auto;gap:22px;align-items:center;padding:20px 0 26px}
+.appicon{width:116px;height:116px;border-radius:26px;overflow:hidden;background:linear-gradient(145deg,#29133e,#11131c);border:1px solid #ffffff20;display:grid;place-items:center;box-shadow:0 10px 35px #0008}
+.appicon img{width:100%;height:100%;object-fit:cover}
+h1{margin:0 0 7px;font-size:clamp(28px,4vw,38px);font-weight:850}
+.developer{color:#c084fc;font-weight:650;margin-bottom:12px}
+.meta{display:flex;flex-wrap:wrap;gap:0;color:var(--muted);font-size:13px}
+.meta span{padding:0 13px;border-left:1px solid #3b3f4d}.meta span:first-child{padding-right:0}
+.download{background:linear-gradient(100deg,#a855f7,#7c3aed);color:white;border:0;border-radius:12px;padding:14px 24px;font-size:16px;font-weight:850;display:inline-flex;justify-content:center;align-items:center;gap:9px;min-width:185px;box-shadow:0 8px 25px #873de755;transition:.2s}
+.download:hover{transform:translateY(-2px);filter:brightness(1.1)}
+.note{font-size:11px;color:#9298a8;margin-top:9px;text-align:center;max-width:185px;line-height:1.6}
+.section{margin-top:25px}
+.section-title{font-size:19px;font-weight:800;margin:0 0 16px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:17px 0}
+.stat{text-align:center;border-left:1px solid var(--line)}.stat:last-child{border:0}
+.stat b{display:block;font-size:16px}.stat small{display:block;color:var(--muted);margin-top:5px;font-size:12px}
+.gallery{display:flex;gap:14px;overflow-x:auto;padding:3px 2px 16px;scroll-snap-type:x mandatory;scrollbar-width:thin;scrollbar-color:#7040a5 #1b1d28}
+.shot{flex:0 0 auto;width:clamp(190px,25vw,245px);height:410px;border-radius:19px;overflow:hidden;border:1px solid #ffffff25;background:#171923;scroll-snap-align:start;cursor:pointer;box-shadow:0 8px 24px #0005}
+.shot img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s}
+.shot:hover img{transform:scale(1.035)}
+.description{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px;line-height:1.9;color:#d0d3dd}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.feature{background:var(--surface);border:1px solid var(--line);border-radius:15px;padding:17px}
+.feature .ico{font-size:24px}.feature b{display:block;margin:8px 0 4px}.feature p{color:var(--muted);font-size:13px;line-height:1.7;margin:0}
+.devcard{display:flex;align-items:center;gap:14px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:17px}
+.devmark{width:48px;height:48px;border-radius:14px;background:linear-gradient(140deg,#a855f7,#321052);display:grid;place-items:center;font-weight:1000;font-size:19px}
+footer{text-align:center;color:#858b9b;border-top:1px solid #ffffff12;padding:24px 12px;font-size:12px;line-height:1.8}
+footer b{color:#c084fc}
+.viewer{display:none;position:fixed;inset:0;background:#000e;z-index:20;align-items:center;justify-content:center;padding:20px}
+.viewer.open{display:flex}.viewer img{max-width:min(92vw,520px);max-height:88vh;border-radius:16px;box-shadow:0 15px 60px #000}
+.close{position:absolute;top:18px;left:18px;border:0;border-radius:50%;width:42px;height:42px;background:#ffffff20;color:white;font-size:25px}
+@media(max-width:720px){.wrap{padding:20px 16px 45px}.apphead{grid-template-columns:82px 1fr;gap:14px}.appicon{width:82px;height:82px;border-radius:20px}.apphead .actionbox{grid-column:1/-1}.download{width:100%}.note{max-width:none;text-align:center}.stats{grid-template-columns:repeat(2,1fr);row-gap:18px}.stat:nth-child(2){border:0}.shot{width:210px;height:390px}.features{grid-template-columns:1fr}.toplabel{display:none}}
+</style>
+</head>
+<body>
+<header class="topbar"><div class="topinner">
+  <div class="logo-mini">S</div>
+  <div class="brand">SPON <span>TEAM</span></div>
+  <div class="toplabel">مركز التطبيقات والألعاب</div>
+</div></header>
+<main class="wrap">
+  <div class="breadcrumb">الرئيسية　›　الألعاب　›　فِطنة</div>
+  <section class="apphead">
+    <div class="appicon"><img src="assets/spon-team-logo.png" alt="أيقونة SPON TEAM"></div>
+    <div>
+      <h1>فِطنة</h1>
+      <div class="developer">SPON TEAM</div>
+      <div class="meta"><span>لعبة ذكاء وألغاز</span><span>Android</span><span>العربية</span></div>
+    </div>
+    <div class="actionbox">
+      <a class="download" href="https://apk.e-droid.net/apk/app4239702-c42xkq.apk?v=3" target="_blank" rel="noopener">⬇ تحميل التطبيق</a>
+      <div class="note">ملف APK · قد يطلب Android تأكيد تثبيت التطبيق</div>
+    </div>
+  </section>
+
+  <section class="stats">
+    <div class="stat"><b>🧩 ألغاز</b><small>تحديات ذهنية</small></div>
+    <div class="stat"><b>♟️ شطرنج</b><small>لعبة استراتيجية</small></div>
+    <div class="stat"><b>💎 جواهر</b><small>مكافآت داخل اللعبة</small></div>
+    <div class="stat"><b>📱 Android</b><small>نسخة الهاتف</small></div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">صور من اللعبة</h2>
+    <div class="gallery">
+      <div class="shot" data-full="assets/game-screen-start.jpg"><img src="assets/game-screen-start.jpg" alt="شاشة بداية لعبة فطنة"></div>
+      <div class="shot" data-full="assets/game-screen-menu.jpg"><img src="assets/game-screen-menu.jpg" alt="القائمة الرئيسية للعبة فطنة"></div>
+      <div class="shot" data-full="assets/game-screen-puzzle.jpg"><img src="assets/game-screen-puzzle.jpg" alt="واجهة الألغاز في لعبة فطنة"></div>
+      <div class="shot" data-full="assets/game-screen-settings.jpg"><img src="assets/game-screen-settings.jpg" alt="إعدادات اللعبة والصوت"></div>
+      <div class="shot" data-full="assets/game-screen-skills.jpg"><img src="assets/game-screen-skills.jpg" alt="المهارات والقدرات المميزة"></div>
+      <div class="shot" data-full="assets/game-screen-missions.jpg"><img src="assets/game-screen-missions.jpg" alt="قائمة المهام والتحديات"></div>
+      <div class="shot" data-full="assets/game-screen-store.jpg"><img src="assets/game-screen-store.jpg" alt="متجر فطنة للأدوات والسكينات"></div>
+      <div class="shot" data-full="assets/game-screen-overview.jpg"><img src="assets/game-screen-overview.jpg" alt="نظرة عامة على شاشات لعبة فطنة"></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">عن اللعبة</h2>
+    <div class="description">فِطنة لعبة عربية تجمع بين التفكير والتحدي. اختبر مهاراتك في الألغاز، وتدرّج في المستويات، واجمع المكافآت والجواهر، واستمتع بتجربة الشطرنج. تعرّف على واجهات اللعبة: الإعدادات والصوت، المهارات والقدرات، المهام والتحديات، ومتجر الأدوات والسكينات. اسحب الصور أفقياً واضغط على أي صورة لعرضها بحجم أكبر.</div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">ماذا ستجد داخل فِطنة؟</h2>
+    <div class="features">
+      <article class="feature"><div class="ico">🧠</div><b>تحديات ذهنية</b><p>ألغاز وأسئلة تساعدك على اختبار سرعة التفكير ودقة الملاحظة.</p></article>
+      <article class="feature"><div class="ico">♟️</div><b>الشطرنج</b><p>استمتع بلعبة الشطرنج وطوّر خططك ومهاراتك.</p></article>
+      <article class="feature"><div class="ico">🏆</div><b>تقدم ومكافآت</b><p>أنجز التحديات واجمع النجوم والجواهر وافتح المكافآت.</p></article>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="devcard"><div class="devmark">S</div><div><b>SPON TEAM</b><div style="color:var(--muted);font-size:13px;margin-top:4px">تم تطوير اللعبة من قبل فريق SPON TEAM</div></div></div>
+  </section>
+</main>
+<footer>© 2026 SPON TEAM — جميع الحقوق محفوظة<br>فِطنة · فكّر، العب، وتحدَّ نفسك</footer>
+<div class="viewer" id="viewer"><button class="close" aria-label="إغلاق">×</button><img id="viewerImg" src="" alt="صورة مكبرة من اللعبة"></div>
+<script>
+const viewer=document.getElementById('viewer'), viewerImg=document.getElementById('viewerImg');
+document.querySelectorAll('.shot').forEach(el=>el.addEventListener('click',()=>{viewerImg.src=el.dataset.full;viewer.classList.add('open')}));
+viewer.addEventListener('click',e=>{if(e.target===viewer||e.target.classList.contains('close'))viewer.classList.remove('open')});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')viewer.classList.remove('open')});
+</script>
+</body></html>
